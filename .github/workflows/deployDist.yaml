@@ -1,12 +1,11 @@
-name: Deploy dist
+name: "Creating My Own Yaml"
 on: [push,workflow_dispatch]
 jobs:
-  testRepo:
+  clonecode:
     runs-on: ubuntu-latest
     steps:
-      - name: "Get Code"
+      - name: "cloning the codebase"
         run: |
-          echo "Cloning Code..."
+          echo "Cloning the codebase..."
           echo "${{toJSON(github)}}"
           git clone https://github.com/${{github.repository}}.git
-       
