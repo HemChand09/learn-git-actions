@@ -7,7 +7,7 @@ jobs:
       - name: "Dispatch the code and Clone..."
         uses:  actions/checkout@v4
       - name: "Install NodeJS"
-        uses: actions/setup-node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: "Check Node Version"
