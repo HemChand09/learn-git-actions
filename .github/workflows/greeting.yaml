@@ -1,8 +1,8 @@
-name: "Greeting"
+name: "My Second Work Flow"
 on: push
 jobs:
-  greet:
+  talk:
     runs-on: ubuntu-latest
     steps:
-      - name: "greet user"
-        run: echo "Hey HemChand How u doing"
+      - name: "Talk to GitHub"
+        run: echo "Hi Git Hub This is my second work flow"
