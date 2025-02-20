@@ -1,7 +1,7 @@
 name: "Deploy code With All Dependencies and Test Cases"
 on: [push,workflow_dispatch]
 jobs:
-  Deploy Code:
+  DeployCode:
     runs-on: ubuntu-latest
     steps:
       - name: "Dispatch the code and Clone..."
