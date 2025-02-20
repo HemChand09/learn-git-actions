@@ -15,6 +15,7 @@ jobs:
       - name: "Run Test Cases"
         run: npm run test
   deploy:
+    needs: finalCheck
     runs-on: ubuntu-latest
     steps:
         - name: "Deploy App"
