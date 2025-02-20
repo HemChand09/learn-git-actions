@@ -1,11 +1,22 @@
-name: "Creating My Own Yaml"
+name: "Deploy code With All Dependencies and Test Cases"
 on: [push,workflow_dispatch]
 jobs:
-  clonecode:
+  Deploy Code:
     runs-on: ubuntu-latest
     steps:
-      - name: "cloning the codebase"
-        run: |
-          echo "Cloning the codebase..."
-          echo "${{toJSON(github)}}"
-          git clone https://github.com/${{github.repository}}.git
+      - name: "Dispatch the code and Clone..."
+        uses:  actions/checkout@v4
+      - name: "Install NodeJS"
+        uses: actions/setup-node
+        with:
+          node-version: 20
+      - name: "Check Node Version"
+        run: node -v
+      - name: "Install All App Dependencies"
+        run: npm ci
+      - name: "Run Test Cases"
+        run: npm run test
+
+
+
+
