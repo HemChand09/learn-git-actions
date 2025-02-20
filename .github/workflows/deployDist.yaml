@@ -1,22 +1,16 @@
-name: "Deploy code With All Dependencies and Test Cases"
+name: "Final Setup"
 on: [push,workflow_dispatch]
 jobs:
-  DeployCode:
+  finalCheck:
     runs-on: ubuntu-latest
     steps:
-      - name: "Dispatch the code and Clone..."
-        uses:  actions/checkout@v4
-      - name: "Install NodeJS"
+      - name: "Checkout Code and Clone..."
+        uses: actions/checkout@v4
+      - name: "Install Node Js In Runner"
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
       - name: "Check Node Version"
         run: node -v
-      - name: "Install All App Dependencies"
+      - name: "install Application Dependencies"
         run: npm ci
       - name: "Run Test Cases"
         run: npm run test
-
-
-
-
