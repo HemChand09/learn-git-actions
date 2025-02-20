@@ -14,3 +14,21 @@ jobs:
         run: npm ci
       - name: "Run Test Cases"
         run: npm run test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        - name: "Deploy App"
+          uses: actions/checkout@v4
+        - name: "Install Node Js In Runner"
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        - name: "install Application Dependencies"
+          run: npm ci
+        - name : "Deploy"
+          run: npm run build
+        - name: "Deployed Application"
+          run: echo "Application Deployed Successfully"
+
+
+
