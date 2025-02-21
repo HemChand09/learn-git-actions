@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <h1>Git Hub Actions Project Deploying the Project Check  this is changes becoz of the Test Cases!</h1>
+      <h1>Git Hub Actions Project Deploying the Project Check  this is changes  of the Test Cases!</h1>
     </>
   )
 }
