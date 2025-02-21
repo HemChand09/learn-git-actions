@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <h1>Git Hub Actions Project !</h1>
+      <h1>Git Hub Actions Project Hello There !</h1>
     </>
   )
 }

@@ -1,4 +1,4 @@
-name: "Next Day Check"
+name: "Deploy Application"
 #on: [push,workflow_dispatch]
 on:
   push:
