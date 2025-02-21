@@ -1,7 +1,7 @@
 name: "Next Day Check"
 on: [push,workflow_dispatch]
 jobs:
-  testcode:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - name: "Test Cases Running"
@@ -17,7 +17,7 @@ jobs:
       - name: "Code Test Cases Running"
         run: npm run test
   deployCode:
-    needs: testcode
+    needs: testing
     runs-on: ubuntu-latest
     steps:
       - name: "Test Cases Running"
