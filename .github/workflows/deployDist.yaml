@@ -4,7 +4,7 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     steps:
-      - name: "Test Cases Running"
+      - name: "Test Cases Running -- ${{runner.os}}"
         uses: actions/checkout@v4
       - name: "Install Node"
         uses: actions/setup-node@v4
