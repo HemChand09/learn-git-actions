@@ -1,0 +1,72 @@
+name: "Deploy live reacy application"
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+    paths-ignore:
+      - ".github/workflows/**"
+      - README.md
+jobs:
+  Testjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Crete Checkout"
+        uses: actions/checkout@v4
+      - name: "Install Node"
+        uses: actions/setup-node@v4
+      - name: "Add Cache"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+      - name: "Install Application Dependencies"
+        run: npm ci
+      - name: "Run Test Cases"
+        run: npm run tes
+  Build:
+    needs: Testjob
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Crete Checkout"
+        uses: actions/checkout@v4
+      - name: "Install Node"
+        uses: actions/setup-node@v4
+      - name: "Add Cache"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+      - name: "Install Application Dependencies"
+        run: npm ci
+      - name: "Create Dist"
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-file
+          path: dist
+      - name: "Build Application"
+        run: npm run build
+      - name: "Upload Dist"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: github-pages
+          path: dist
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: "Deploy Application"
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+
+
+
+
