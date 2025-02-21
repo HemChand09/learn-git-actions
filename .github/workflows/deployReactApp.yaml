@@ -40,11 +40,6 @@ jobs:
           key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
       - name: "Install Application Dependencies"
         run: npm ci
-      - name: "Create Dist"
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist-file
-          path: dist
       - name: "Build Application"
         run: npm run build
       - name: "Upload Dist"
