@@ -42,6 +42,11 @@ jobs:
         run: npm ci
       - name: "Build Application"
         run: npm run build
+      - name: "Create Dist"
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-file
+          path: dist
       - name: "Upload Dist"
         uses: actions/upload-pages-artifact@v3
         with:
