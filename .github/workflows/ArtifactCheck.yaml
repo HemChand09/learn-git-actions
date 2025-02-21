@@ -1,0 +1,66 @@
+name: "Artifact Deploy"
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+    paths-ignore:
+      - '.github/workflows/**'
+      - README.md
+  workflow_dispatch:
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Actions Creator"
+        uses: actions/checkout@v4
+      - name: "Install Node JS"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: "Cache Action"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{runner.os}}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: "Install Application Dependencies"
+        run: npm ci
+      - name: "Run Test Cases"
+        run: npm run test
+  Build:
+    needs: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Actions Creator"
+        uses: actions/checkout@v4
+      - name: "Install Node JS"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: "Cache Action"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{runner.os}}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: "Install Application Dependencies"
+        run: npm ci
+      - name: "Build Dist File"
+        run: npm run build
+      - name: "Upload Dist File"
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-file
+          path: dist
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Download Dist File"
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-file
+          path: dist
+      - name: "Deployed Status"
+        run: echo "Deployed Success"
+
+
