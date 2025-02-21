@@ -1,35 +1,32 @@
-name: "Final Setup"
+name: "Next Day Check"
 on: [push,workflow_dispatch]
 jobs:
-  finalCheck:
+  testcode:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout Code and Clone..."
+      - name: "Test Cases Running"
         uses: actions/checkout@v4
-      - name: "Install Node Js In Runner"
+      - name: "Install Node"
         uses: actions/setup-node@v4
-      - name: "Check Node Version"
+        with:
+          node-version: 20
+      - name: "Checking Node Version"
         run: node -v
-      - name: "install Application Dependencies"
+      - name: "Install Application Dependencies"
         run: npm ci
-      - name: "Run Test Cases"
+      - name: "Code Test Cases Running"
         run: npm run test
-  deploy:
-    needs: finalCheck
+  deployCode:
+    needs: testcode
     runs-on: ubuntu-latest
     steps:
-        - name: "Deploy App"
-          uses: actions/checkout@v4
-        - name: "Install Node Js In Runner"
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
-        - name: "install Application Dependencies"
-          run: npm ci
-        - name : "Deploy"
-          run: npm run build
-        - name: "Deployed Application"
-          run: echo "Application Deployed Successfully"
-
-
-
+      - name: "Test Cases Running"
+        uses: actions/checkout@v4
+      - name: "Install Node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: "Install Application Dependencies"
+        run: npm ci
+      - name: "Deployed Status"
+        run: echo "Code Deployed Success."
