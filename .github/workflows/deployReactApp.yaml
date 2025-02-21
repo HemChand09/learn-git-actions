@@ -24,7 +24,7 @@ jobs:
       - name: "Install Application Dependencies"
         run: npm ci
       - name: "Run Test Cases"
-        run: npm run tes
+        run: npm run test
   Build:
     needs: Testjob
     runs-on: ubuntu-latest
