@@ -1,5 +1,13 @@
 name: "Next Day Check"
-on: [push,workflow_dispatch]
+#on: [push,workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+    paths-ignore:
+      - '.github/workflows/**'
+      - README.md
 jobs:
   testing:
     runs-on: ubuntu-latest
