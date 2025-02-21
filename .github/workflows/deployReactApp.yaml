@@ -1,4 +1,4 @@
-name: "Deploy live reacy application"
+name: "Deploy live react application"
 on:
   push:
     branches:

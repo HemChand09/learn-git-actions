@@ -8,4 +8,5 @@ export default defineConfig({
     globals: true,
     environment: "jsdom", // Ensures a browser-like environment is used
   },
+  base:"/learn-git-actions/"
 });
