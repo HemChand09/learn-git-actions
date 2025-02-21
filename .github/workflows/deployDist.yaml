@@ -12,6 +12,11 @@ jobs:
           node-version: 20
       - name: "Checking Node Version"
         run: node -v
+      - name: "cache Dependencies"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{runner.os}}-node-${{hashFiles('**/package.lock.json')}}
       - name: "Install Application Dependencies"
         run: npm ci
       - name: "Code Test Cases Running"
@@ -26,6 +31,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: "cache Dependencies"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{runner.os}}-node-${{hashFiles('**/package.lock.json')}}
       - name: "Install Application Dependencies"
         run: npm ci
       - name: "Deployed Status"
