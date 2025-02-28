@@ -4,7 +4,14 @@ function App() {
 
   return (
     <>
-      <h1>Hello This is The New GitHub Page Hello HemChand Yesala!</h1>
+      <h2>First React Test Case</h2>
+      <input id='myInputFiled'
+        type="text"
+        name="userName"
+        value="HemChand" />
+      <img src="test.jpg"
+        alt="Test Image"
+        title="This is Image" />
     </>
   )
 }
